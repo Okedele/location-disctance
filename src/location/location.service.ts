@@ -25,15 +25,6 @@ export class LocationService {
   }
 
   async addLocation(locationDTO: CreateLocationDto): Promise<Location> {
-    const exists = await this.locationRepository.findOne({
-      name: locationDTO.name,
-    });
-    if (exists)
-      throw new HttpException(
-        'Location name already in use',
-        HttpStatus.BAD_REQUEST,
-      );
-
     const location = this.locationRepository.create(locationDTO);
     return this.locationRepository.save(location);
   }
