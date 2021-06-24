@@ -18,17 +18,32 @@ export class LocationController {
 
   @Get()
   async findAll(): Promise<any> {
-    return this.locationService.findAll();
+    const locations = await this.locationService.findAll();
+    return {
+      status: 'success',
+      message: 'Locations retrieved successfuly',
+      data: locations,
+    };
   }
 
   @Get('/:name')
   async getOneLocation(@Param('name') name: string): Promise<any> {
-    return this.locationService.getOneLocation(name);
+    const location = await this.locationService.getOneLocation(name);
+    return {
+      status: 'success',
+      message: `Location with name ${name} gotten successfully`,
+      data: location,
+    };
   }
 
   @Post()
   async addLocation(@Body() locationDTO: CreateLocationDto): Promise<any> {
-    return this.locationService.addLocation(locationDTO);
+    const location = await this.locationService.addLocation(locationDTO);
+    return {
+      status: 'success',
+      message: 'Location added successfully',
+      data: location,
+    };
   }
 
   @Post('/distance')
@@ -36,16 +51,26 @@ export class LocationController {
     @Body() locationDTO: CalculateDistanceDto,
   ): Promise<any> {
     const distance = await this.locationService.calculateDistance(locationDTO);
-    return { distance };
+    return {
+      status: 'success',
+      message: 'Distance calculated successfully',
+      data: distance,
+    };
   }
 
   @Put('')
   async editLocation(@Body() locationDTO: UpdateLocationDto): Promise<any> {
-    return this.locationService.editLocation(locationDTO);
+    const edit_location = await this.locationService.editLocation(locationDTO);
+    return {
+      status: 'success',
+      message: 'Location edited successfully',
+      data: edit_location,
+    };
   }
 
   @Delete('/:name')
   async deleteLocation(@Param('name') name: string) {
-    return this.locationService.deleteLocation(name);
+    await this.locationService.deleteLocation(name);
+    return { status: 'success', message: 'Location deleted successfully' };
   }
 }
