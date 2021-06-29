@@ -8,7 +8,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { IsUniqueLocation } from './location.validation';
+import { IsUniqueLocation } from '../location.validation';
 
 export class CreateLocationDto {
   @IsNotEmpty()

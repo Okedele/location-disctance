@@ -1,9 +1,9 @@
 import { Repository } from 'typeorm';
 import { Location } from './location.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateLocationDto } from './create-location.dto';
-import { UpdateLocationDto } from './update-location.dto';
-import { CalculateDistanceDto } from './calculate-distance.dto';
+import { CreateLocationDto } from './dto/create-location.dto';
+import { UpdateLocationDto } from './dto/update-location.dto';
+import { CalculateDistanceDto } from './dto/calculate-distance.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 @Injectable()
